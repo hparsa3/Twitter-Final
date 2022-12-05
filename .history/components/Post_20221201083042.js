@@ -125,7 +125,7 @@ src={post?.data()?.userImg} alt=""/>
           <div
           onClick={() => router.push(`/posts/${id}`)}
           className="text-gray-800 text-[15px] sm:text-[16px] mb-2">
-              <p className="w-full block break-all" dangerouslySetInnerHTML={{ __html: post?.data()?.text.replace(re,`<a style="color:blue" href="$1" target="_blank" rel="noreferrer">$1</a>`) }} />
+              <p className="w-full block break-all" dangerouslySetInnerHTML={{ __html: post?.data()?.text.replace(re,`<a style="color:blue" href="$1" target="_blank">$1</a>`) }} />
           </div>
 
            {/* post image */}
