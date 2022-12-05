@@ -4,12 +4,15 @@ import {useEffect, useState} from "react";
 import {db} from "../firebase";
 import {AnimatePresence, motion} from "framer-motion";
 import Post from "./Post";
-import {useRouter} from "next/router"
+import {useRouter} from "next/router";
+import { userState } from "../atom/userAtom";
+import {useRecoilState} from "recoil";
 
 
 
 
 export default function Bookmark() {
+    const [currentUser] = useRecoilState(userState);
     const router = useRouter()
     const [bookmarks,setBookmarks] = useState([])
     const [loading,setLoading] = useState(true)
@@ -50,7 +53,7 @@ export default function Bookmark() {
                         <div>
                             <AnimatePresence>
                                 {bookmarks.map((item) => {
-                                    return item?.data()?.isBookmarked &&
+                                    return ( item?.data()?.isBookmarked && item?.data()?.id === currentUser?.uid) &&
                                         <motion.div
                                             key={item.id}
                                             initial={{ opacity: 0 }}
