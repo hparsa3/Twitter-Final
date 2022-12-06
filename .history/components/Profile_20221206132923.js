@@ -76,7 +76,7 @@ export default function Profile(props) {
             }
         }
         fetchUser()
-        let followers = user?.followers.concat(uid)
+        let followers = currentUser?.followers.concat(uid)
             updateDoc(doc(db, "users", props.id), {
                 followers,
             })
@@ -223,13 +223,13 @@ export default function Profile(props) {
                 </AnimatePresence>
             </div>
             <ProfileModal
-                name={user?.name}
-                bio={user?.bio}
-                location={user?.location}
-                website={user?.website}
-                userImg={user?.userImg}
-                headerImg={user?.headerImg}
-                id={user?.uid}
+                name={currentUser?.name}
+                bio={currentUser?.bio}
+                location={currentUser?.location}
+                website={currentUser?.website}
+                userImg={currentUser?.userImg}
+                headerImg={currentUser?.headerImg}
+                id={currentUser?.uid}
             />
         </div>
     );

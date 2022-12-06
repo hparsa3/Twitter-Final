@@ -76,7 +76,7 @@ export default function Profile(props) {
             }
         }
         fetchUser()
-        let followers = user?.followers.concat(uid)
+        let followers = currentUser?.followers.concat(uid)
             updateDoc(doc(db, "users", props.id), {
                 followers,
             })

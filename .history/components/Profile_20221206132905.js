@@ -76,7 +76,7 @@ export default function Profile(props) {
             }
         }
         fetchUser()
-        let followers = user?.followers.concat(uid)
+        let followers = currentUser?.followers.concat(uid)
             updateDoc(doc(db, "users", props.id), {
                 followers,
             })
@@ -196,7 +196,7 @@ export default function Profile(props) {
                     </Link>
                     <Link href="/followers">
                         <p className="text-[15px] text-[15px] text-gray-500 cursor-pointer hover:underline">
-                            <span className="font-bold text-black w-[10px] mr-1">{user?.followers?.length}</span>
+                            <span className="font-bold text-black w-[10px] mr-1">{currentUser?.followers?.length}</span>
                             Followers
                         </p>
                     </Link>
@@ -209,7 +209,7 @@ export default function Profile(props) {
             <div>
                 <AnimatePresence>
                     {tweets.map((item) => {
-                        return (!user || item?.data()?.id === user?.uid) &&
+                        return (!currentUser || item?.data()?.id === currentUser?.uid) &&
                             <motion.div
                                 key={item.id}
                                 initial={{ opacity: 0 }}
@@ -223,13 +223,13 @@ export default function Profile(props) {
                 </AnimatePresence>
             </div>
             <ProfileModal
-                name={user?.name}
-                bio={user?.bio}
-                location={user?.location}
-                website={user?.website}
-                userImg={user?.userImg}
-                headerImg={user?.headerImg}
-                id={user?.uid}
+                name={currentUser?.name}
+                bio={currentUser?.bio}
+                location={currentUser?.location}
+                website={currentUser?.website}
+                userImg={currentUser?.userImg}
+                headerImg={currentUser?.headerImg}
+                id={currentUser?.uid}
             />
         </div>
     );

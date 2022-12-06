@@ -30,9 +30,9 @@ export default function Profile(props) {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUid(auth.currentUser.providerData[0].uid)
+                setUid(auth.user.providerData[0].uid)
                 const fetchUser = async () => {
-                    const docRef = doc(db, "users",props.id ? props.id : auth.currentUser.providerData[0].uid);
+                    const docRef = doc(db, "users",props.id ? props.id : auth.user.providerData[0].uid);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         //setCurrentUser(docSnap.data());

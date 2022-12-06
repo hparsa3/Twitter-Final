@@ -76,7 +76,7 @@ export default function Profile(props) {
             }
         }
         fetchUser()
-        let followers = user?.followers.concat(uid)
+        let followers = currentUser?.followers.concat(uid)
             updateDoc(doc(db, "users", props.id), {
                 followers,
             })
@@ -172,8 +172,8 @@ export default function Profile(props) {
                                           d="M18.36 5.64c-1.95-1.96-5.11-1.96-7.07 0L9.88 7.05 8.46 5.64l1.42-1.42c2.73-2.73 7.16-2.73 9.9 0 2.73 2.74 2.73 7.17 0 9.9l-1.42 1.42-1.41-1.42 1.41-1.41c1.96-1.96 1.96-5.12 0-7.07zm-2.12 3.53l-7.07 7.07-1.41-1.41 7.07-7.07 1.41 1.41zm-12.02.71l1.42-1.42 1.41 1.42-1.41 1.41c-1.96 1.96-1.96 5.12 0 7.07 1.95 1.96 5.11 1.96 7.07 0l1.41-1.41 1.42 1.41-1.42 1.42c-2.73 2.73-7.16 2.73-9.9 0-2.73-2.74-2.73-7.17 0-9.9z"></path>
                                 </g>
                             </svg>
-                            <a href={user?.website} target="_blank" rel="noreferrer" className="text-[15px] text-gray-500 mr-3 ml-1 text-blue-600 cursor-pointer">
-                                {user?.website.replace(/https:\/\/|http:\/\//i,'')}
+                            <a href={currentUser?.website} target="_blank" rel="noreferrer" className="text-[15px] text-gray-500 mr-3 ml-1 text-blue-600 cursor-pointer">
+                                {currentUser?.website.replace(/https:\/\/|http:\/\//i,'')}
                             </a>
                         </>
                     }
@@ -185,18 +185,18 @@ export default function Profile(props) {
                                   d="M7 4V3h2v1h6V3h2v1h1.5C19.89 4 21 5.12 21 6.5v12c0 1.38-1.11 2.5-2.5 2.5h-13C4.12 21 3 19.88 3 18.5v-12C3 5.12 4.12 4 5.5 4H7zm0 2H5.5c-.27 0-.5.22-.5.5v12c0 .28.23.5.5.5h13c.28 0 .5-.22.5-.5v-12c0-.28-.22-.5-.5-.5H17v1h-2V6H9v1H7V6zm0 6h2v-2H7v2zm0 4h2v-2H7v2zm4-4h2v-2h-2v2zm0 4h2v-2h-2v2zm4-4h2v-2h-2v2z"></path>
                         </g>
                     </svg>
-                    <p className="text-[15px] text-gray-500 ml-1">{timeConverter(user?.timestamp?.seconds)}</p>
+                    <p className="text-[15px] text-gray-500 ml-1">{timeConverter(currentUser?.timestamp?.seconds)}</p>
                 </div>
                 <div className="flex items-center ml-4 mt-2.5 cursor-pointer">
                     <Link href="/following">
                     <p className="text-[15px] mr-[20px] text-[15px] text-gray-500 cursor-pointer hover:underline">
-                        <span className="mr-1 font-bold text-black">{user?.following?.length}</span>
+                        <span className="mr-1 font-bold text-black">{currentUser?.following?.length}</span>
                         Following
                     </p>
                     </Link>
                     <Link href="/followers">
                         <p className="text-[15px] text-[15px] text-gray-500 cursor-pointer hover:underline">
-                            <span className="font-bold text-black w-[10px] mr-1">{user?.followers?.length}</span>
+                            <span className="font-bold text-black w-[10px] mr-1">{currentUser?.followers?.length}</span>
                             Followers
                         </p>
                     </Link>
@@ -209,7 +209,7 @@ export default function Profile(props) {
             <div>
                 <AnimatePresence>
                     {tweets.map((item) => {
-                        return (!user || item?.data()?.id === user?.uid) &&
+                        return (!currentUser || item?.data()?.id === currentUser?.uid) &&
                             <motion.div
                                 key={item.id}
                                 initial={{ opacity: 0 }}
@@ -223,13 +223,13 @@ export default function Profile(props) {
                 </AnimatePresence>
             </div>
             <ProfileModal
-                name={user?.name}
-                bio={user?.bio}
-                location={user?.location}
-                website={user?.website}
-                userImg={user?.userImg}
-                headerImg={user?.headerImg}
-                id={user?.uid}
+                name={currentUser?.name}
+                bio={currentUser?.bio}
+                location={currentUser?.location}
+                website={currentUser?.website}
+                userImg={currentUser?.userImg}
+                headerImg={currentUser?.headerImg}
+                id={currentUser?.uid}
             />
         </div>
     );
