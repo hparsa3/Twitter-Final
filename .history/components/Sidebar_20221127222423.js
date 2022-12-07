@@ -93,8 +93,8 @@ function onSignOut() {
         <Link  href="/">
            <SidebarMenuItem text="Home" Icon={HomeIcon} ActiveIcon={HomeIconFilled} active={router.pathname === "/"}  />
         </Link>
-        <div onClick={() => router.push("/explore/trending")}>
-        <SidebarMenuItem text="Explore" Icon={HashtagIcon} /></div>
+
+        <SidebarMenuItem text="Explore" Icon={HashtagIcon} />
         {currentUser && (
           <>
             <SidebarMenuItem text="Notifications" Icon={BellIcon} />
