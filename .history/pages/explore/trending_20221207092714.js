@@ -6,7 +6,7 @@ import Trending from "../../components/Trending";
 import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { useRouter } from "next/router";
 
-export default function Trending({ newsResults, randomUsersResults, trendingResults } ) {
+export default function Trending({ newsResults, randomUsersResults, TrendingResults } ) {
   const router = useRouter();
   return (
     <div>
@@ -30,7 +30,7 @@ export default function Trending({ newsResults, randomUsersResults, trendingResu
 
       </div>
       
-      <Trending trendingResults={trendingResults.articles}/>
+      <Trending rendingResults={trendingResults.articles}/>
     </div>
 
 
